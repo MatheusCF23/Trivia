@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import reqApi from '../service/Api';
+// import { updateToken } from '../redux/action';
+// import { saveLocalStorage } from '../service/LocalStorage';
 
 const OBJ = {
   disable: true,
@@ -21,6 +26,13 @@ class Login extends React.Component {
     const nameCheck = name.length > 0;
     const validate = emailCheck && nameCheck;
     this.setState({ disable: !validate });
+  };
+
+  handleClick = async () => {
+    const { history } = this.props;
+    const resultApi = await reqApi();
+    localStorage.setItem('token', resultApi.token);
+    history.push('/game');
   };
 
   render() {
@@ -48,6 +60,7 @@ class Login extends React.Component {
             data-testid="btn-play"
             type="button"
             disabled={ disable }
+            onClick={ this.handleClick }
           >
             Play
           </button>
@@ -57,4 +70,10 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default connect()(Login);
