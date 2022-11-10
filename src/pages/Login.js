@@ -35,10 +35,22 @@ class Login extends React.Component {
     history.push('/game');
   };
 
+  handleSettings = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  };
+
   render() {
     const { disable, name, email } = this.state;
     return (
       <div>
+        <button
+          data-testid="btn-settings"
+          type="button"
+          onClick={ this.handleSettings }
+        >
+          Settings
+        </button>
         <form>
           <input
             data-testid="input-player-name"
