@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import reqApi from '../service/Api';
 import { addPlayer } from '../redux/action';
+import logoTrivia from '../img/logoTrivia.png';
+// import { updateToken } from '../redux/action';
+// import { saveLocalStorage } from '../service/LocalStorage';
 
 const OBJ = {
   disable: true,
@@ -31,8 +34,8 @@ class Login extends React.Component {
     const { history, dispatch } = this.props;
     const resultApi = await reqApi();
     localStorage.setItem('token', resultApi.token);
-    history.push('/game');
     dispatch(addPlayer(this.state));
+    history.push('/game');
   };
 
   handleSettings = () => {
@@ -43,14 +46,8 @@ class Login extends React.Component {
   render() {
     const { disable, name, email } = this.state;
     return (
-      <div>
-        <button
-          data-testid="btn-settings"
-          type="button"
-          onClick={ this.handleSettings }
-        >
-          Settings
-        </button>
+      <div className="login">
+        <img src={ logoTrivia } alt="logo Trivia" />
         <form>
           <input
             data-testid="input-player-name"
@@ -75,6 +72,13 @@ class Login extends React.Component {
             onClick={ this.handleClick }
           >
             Play
+          </button>
+          <button
+            data-testid="btn-settings"
+            type="button"
+            onClick={ this.handleSettings }
+          >
+            Settings
           </button>
         </form>
       </div>

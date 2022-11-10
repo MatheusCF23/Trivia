@@ -34,7 +34,7 @@ describe('testing clicks', () => {
     userEvent.click(buttonPlay);
     // await waitFor(() => expect(screen.getByText("Settings")).toBeInTheDocument(), {timeout: 2000,});
     // await screen.findByText('Settings')
-    await screen.findByText('Game');
+    await screen.findByTestId('header-score');
     expect(history.location.pathname).toBe('/game');
   });
 
