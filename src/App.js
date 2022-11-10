@@ -4,6 +4,7 @@ import logo from './trivia.png';
 import Login from './pages/Login';
 import Game from './pages/Game';
 import './App.css';
+import './style/Login.css';
 import Settings from './pages/Settings';
 
 class App extends React.Component {

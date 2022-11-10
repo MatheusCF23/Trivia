@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import reqApi from '../service/Api';
+<<<<<<< Updated upstream
 import { addPlayer } from '../redux/action';
+=======
+import logoTrivia from '../img/logoTrivia.png';
+// import { updateToken } from '../redux/action';
+// import { saveLocalStorage } from '../service/LocalStorage';
+>>>>>>> Stashed changes
 
 const OBJ = {
   disable: true,
@@ -43,14 +49,8 @@ class Login extends React.Component {
   render() {
     const { disable, name, email } = this.state;
     return (
-      <div>
-        <button
-          data-testid="btn-settings"
-          type="button"
-          onClick={ this.handleSettings }
-        >
-          Settings
-        </button>
+      <div className="login">
+        <img src={ logoTrivia } alt="logo Trivia" />
         <form>
           <input
             data-testid="input-player-name"
@@ -75,6 +75,13 @@ class Login extends React.Component {
             onClick={ this.handleClick }
           >
             Play
+          </button>
+          <button
+            data-testid="btn-settings"
+            type="button"
+            onClick={ this.handleSettings }
+          >
+            Settings
           </button>
         </form>
       </div>

@@ -1,0 +1,5 @@
+.login {
+  background-image: url("../img/fundo.png");
+  mix-blend-mode: multiply;
+  filter: blur(4px);
+}
