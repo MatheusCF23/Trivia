@@ -1,5 +1,124 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .login {
-  background-image: url("../img/fundo.png");
+  display: flex;
+  background: linear-gradient(180deg, #3c1b7a 0%, #000000 100%);
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute; */
+}
+
+.login div {
+  /* background-image: url("../img/fundo.png");
+  color: linear-gradient(180deg, #3c1b7a71 0%, #000000 100%) ;
+  background-repeat: no-repeat;
+  background-size: cover;
   mix-blend-mode: multiply;
-  filter: blur(4px);
+  width: 1980px;
+  height: 1000px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 230px;
+  height: 232px;
+}
+
+.amarelo {
+  position: absolute;
+  width: 150px;
+  height: 221px;
+  left: 1329px;
+  top: 400px;
+}
+
+.verde {
+  position: absolute;
+  width: 150px;
+  height: 221px;
+  left: 450px;
+  top: 151px;
+}
+
+.rosa {
+  position: absolute;
+  width: 92px;
+  height: 134px;
+  left: 1229px;
+  top: 200px;
+}
+
+.azul {
+    position: absolute;
+    width: 104px;
+    height: 153px;
+    left: 350px;
+    top: 471px;
+  }
+
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 614px;
+  height: 350px;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+.login form input {
+  display: flex;
+  width: 80%;
+  height: 35px;
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  border: 1px solid #e1e5eb;
+  font-family: "Verdana";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #6b7588;
+}
+
+.login form input[name="name"] {
+  margin-top: 10px;
+}
+
+.login button {
+  width: 85%;
+  height: 45px;
+  padding: 12px 16px;
+  background: #2fc18c;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 5px;
+  font-family: "Epilogue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  color: #ffffff;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  border: none;
+}
+
+.login button:hover {
+  cursor: pointer;
+  background: #2fc18c85;
+  color: #6b7588;
 }

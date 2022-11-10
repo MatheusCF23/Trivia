@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import reqApi from '../service/Api';
 import { addPlayer } from '../redux/action';
 import logoTrivia from '../img/logoTrivia.png';
+import amarelo from '../img/amarelo.png';
+import rosa from '../img/rosa.png';
+import verde from '../img/verde.png';
+import azul from '../img/azul.png';
+// import fundo from '../img/fundo.png';
 // import { updateToken } from '../redux/action';
 // import { saveLocalStorage } from '../service/LocalStorage';
 
@@ -47,40 +52,48 @@ class Login extends React.Component {
     const { disable, name, email } = this.state;
     return (
       <div className="login">
-        <img src={ logoTrivia } alt="logo Trivia" />
-        <form>
-          <input
-            data-testid="input-player-name"
-            placeholder="Name"
-            type="text"
-            value={ name }
-            name="name"
-            onChange={ this.handleChange }
-          />
-          <input
-            data-testid="input-gravatar-email"
-            placeholder="Email"
-            type="email"
-            value={ email }
-            name="email"
-            onChange={ this.handleChange }
-          />
-          <button
-            data-testid="btn-play"
-            type="button"
-            disabled={ disable }
-            onClick={ this.handleClick }
-          >
-            Play
-          </button>
-          <button
-            data-testid="btn-settings"
-            type="button"
-            onClick={ this.handleSettings }
-          >
-            Settings
-          </button>
-        </form>
+        <img className="amarelo" src={ amarelo } alt="interrações" />
+        <img className="azul" src={ azul } alt="interrações" />
+        <img className="rosa" src={ rosa } alt="interrações" />
+        <img className="verde" src={ verde } alt="interrações" />
+        <div>
+          <img className="logo" src={ logoTrivia } alt="logo Trivia" />
+          <form>
+            <input
+              data-testid="input-player-name"
+              placeholder="Name"
+              type="text"
+              value={ name }
+              name="name"
+              onChange={ this.handleChange }
+            />
+            <input
+              data-testid="input-gravatar-email"
+              placeholder="Email"
+              type="email"
+              value={ email }
+              name="email"
+              onChange={ this.handleChange }
+            />
+            <button
+              data-testid="btn-play"
+              type="button"
+              disabled={ disable }
+              name="play"
+              onClick={ this.handleClick }
+            >
+              Play
+            </button>
+            <button
+              data-testid="btn-settings"
+              type="button"
+              onClick={ this.handleSettings }
+              name="settings"
+            >
+              Settings
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
