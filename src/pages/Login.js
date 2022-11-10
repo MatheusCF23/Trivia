@@ -60,6 +60,7 @@ class Login extends React.Component {
           <img className="logo" src={ logoTrivia } alt="logo Trivia" />
           <form>
             <input
+              className="input-name"
               data-testid="input-player-name"
               placeholder="Name"
               type="text"
