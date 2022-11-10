@@ -2,13 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import reqApi from '../service/Api';
-<<<<<<< Updated upstream
 import { addPlayer } from '../redux/action';
-=======
 import logoTrivia from '../img/logoTrivia.png';
 // import { updateToken } from '../redux/action';
 // import { saveLocalStorage } from '../service/LocalStorage';
->>>>>>> Stashed changes
 
 const OBJ = {
   disable: true,
@@ -37,8 +34,8 @@ class Login extends React.Component {
     const { history, dispatch } = this.props;
     const resultApi = await reqApi();
     localStorage.setItem('token', resultApi.token);
-    history.push('/game');
     dispatch(addPlayer(this.state));
+    history.push('/game');
   };
 
   handleSettings = () => {
