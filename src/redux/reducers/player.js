@@ -1,11 +1,10 @@
-import { ADD_PLAYER, UPDATE_TOKEN } from '../action';
+import { ADD_PLAYER } from '../action';
 
 const INITTIAL_STATE = {
   name: '',
   assertions: 0,
   score: 0,
-  gravatarEmail: '',
-  token: '',
+  email: '',
 };
 
 const player = (state = INITTIAL_STATE, action) => {
@@ -13,12 +12,11 @@ const player = (state = INITTIAL_STATE, action) => {
   case ADD_PLAYER:
     return {
       ...state,
+      name: action.player.name,
+      score: 0,
+      email: action.player.email,
     };
-  case UPDATE_TOKEN:
-    return {
-      ...state,
-      token: action.token,
-    };
+
   default:
     return state;
   }
