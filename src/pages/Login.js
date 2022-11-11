@@ -52,10 +52,10 @@ class Login extends React.Component {
     const { disable, name, email } = this.state;
     return (
       <div className="login">
-        <img className="amarelo" src={ amarelo } alt="interrações" />
-        <img className="azul" src={ azul } alt="interrações" />
-        <img className="rosa" src={ rosa } alt="interrações" />
-        <img className="verde" src={ verde } alt="interrações" />
+        <img className="amarelo" src={ amarelo } alt="interrogação amarelo" />
+        <img className="azul" src={ azul } alt="interrogação azul" />
+        <img className="rosa" src={ rosa } alt="interrogação rosa" />
+        <img className="verde" src={ verde } alt="interrogação verde" />
         <div>
           <img className="logo" src={ logoTrivia } alt="logo Trivia" />
           <form>
