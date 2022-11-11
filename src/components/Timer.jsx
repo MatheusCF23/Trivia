@@ -4,12 +4,15 @@ class Timer extends React.Component {
   constructor() {
     super();
     this.state = {
-      count: 5,
+      count: 30,
     };
   }
 
   componentDidMount() {
-    this.timerGame();
+    const fivSeconds = 5000;
+    setTimeout(() => {
+      this.timerGame();
+    }, fivSeconds);
   }
 
   timerGame = () => {
