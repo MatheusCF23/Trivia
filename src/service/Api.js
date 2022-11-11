@@ -5,4 +5,11 @@ const reqApi = async () => {
   return DATA;
 };
 
+export const requestQuestionApi = async (token) => {
+  const ENDPOINT = `https://opentdb.com/api.php?amount=5&token=${token}`;
+  const response = await fetch(ENDPOINT);
+  const result = await response.json();
+  return result;
+};
+
 export default reqApi;

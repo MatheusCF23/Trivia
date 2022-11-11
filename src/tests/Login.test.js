@@ -11,11 +11,19 @@ describe('testing clicks', () => {
     const inputEmail = screen.getByTestId('input-gravatar-email');
     const buttonPlay = screen.getByRole('button', { name: 'Play' });
     const buttonSettings = screen.getByRole('button', { name: 'Settings' });
+    const imgRosa = screen.getByAltText('interrogação rosa');
+    const imgAzul = screen.getByAltText('interrogação azul');
+    const imgVerde = screen.getByAltText('interrogação verde');
+    const imgAmarelo = screen.getByAltText('interrogação amarelo');
 
     expect(inputName).toBeInTheDocument();
     expect(inputEmail).toBeInTheDocument();
     expect(buttonPlay).toBeInTheDocument();
     expect(buttonSettings).toBeInTheDocument();
+    expect(imgRosa).toBeInTheDocument();
+    expect(imgAzul).toBeInTheDocument();
+    expect(imgVerde).toBeInTheDocument();
+    expect(imgAmarelo).toBeInTheDocument();
   });
 });
 
