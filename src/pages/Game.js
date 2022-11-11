@@ -72,6 +72,9 @@ class Game extends React.Component {
                       data-testid={ answer === quest.correct_answer
                         ? 'correct-answer'
                         : `wrong-answer-${idx}` }
+                      className={ answer === quest.correct_answer
+                        ? 'correct_answer'
+                        : `wrong_answer-${idx}` }
                       type="button"
                       onClick={ this.handleClickAnswer }
                     >
