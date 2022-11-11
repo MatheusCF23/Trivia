@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getLocalStorage, removeLocalStorage } from '../service/localStorage';
 import { fetchApiQuestions } from '../redux/action';
+import Timer from '../components/Timer';
 
 class Game extends React.Component {
   constructor() {
@@ -78,6 +79,7 @@ class Game extends React.Component {
                       {answer}
                     </button>
                   )) }
+                  <Timer />
                 </div>
               </div>
             );
