@@ -43,6 +43,7 @@ class Game extends React.Component {
   render() {
     const { isLoading, questions, indexQuestion } = this.state;
     if (isLoading) return (<p>Loading...</p>);
+
     const questCurrent = [questions[indexQuestion]];
 
     return (
