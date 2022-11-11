@@ -9,7 +9,7 @@ const game = (state = INITTIAL_STATE, action) => {
   case TIMER_DESABLED_BUTTON:
     return {
       ...state,
-      disabledButtonAnswers: action.isDesabled,
+      disabledButtonAnswers: true,
     };
   default:
     return state;

@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
+import { timerDesablesButton } from '../redux/action';
 
 class Timer extends React.Component {
   constructor() {
@@ -29,8 +32,10 @@ class Timer extends React.Component {
   // Verificando se o contador chegou a zero.
   verifyCount = (timer) => {
     const { count } = this.state;
+    const { dispatch } = this.props;
     if (count === 0) {
       clearInterval(timer);
+      dispatch(timerDesablesButton());
     }
   };
 
@@ -45,4 +50,8 @@ class Timer extends React.Component {
   }
 }
 
-export default Timer;
+Timer.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+export default connect()(Timer);

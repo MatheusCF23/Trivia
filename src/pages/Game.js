@@ -43,6 +43,8 @@ class Game extends React.Component {
 
   render() {
     const { isLoading, questions, indexQuestion } = this.state;
+    const { disabledButtonAnswers } = this.props;
+
     if (isLoading) return (<p>Loading...</p>);
 
     const questCurrent = [questions[indexQuestion]];
@@ -75,6 +77,7 @@ class Game extends React.Component {
                         : `wrong-answer-${idx}` }
                       type="button"
                       onClick={ this.handleClickAnswer }
+                      disabled={ disabledButtonAnswers }
                     >
                       {answer}
                     </button>
@@ -90,11 +93,16 @@ class Game extends React.Component {
   }
 }
 
+const mapStateToProps = (stateGlobal) => ({
+  disabledButtonAnswers: stateGlobal.game.disabledButtonAnswers,
+});
+
 Game.propTypes = {
+  disabledButtonAnswers: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default connect()(Game);
+export default connect(mapStateToProps)(Game);

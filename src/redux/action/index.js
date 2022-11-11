@@ -25,9 +25,8 @@ export const requestQuestionsError = (error) => ({
   error,
 });
 
-export const timerDesablesButton = (isDesabled) => ({
+export const timerDesablesButton = () => ({
   type: TIMER_DESABLED_BUTTON,
-  isDesabled,
 });
 
 // <---------------- Thunk fecth API ---------------->
