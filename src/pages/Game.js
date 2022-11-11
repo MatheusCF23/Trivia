@@ -122,17 +122,7 @@ class Game extends React.Component {
               { btnNext
                   && (
                     <button
-<<<<<<< Updated upstream
-                      key={ idx }
-                      data-testid={ answer === quest.correct_answer
-                        ? 'correct-answer'
-                        : `wrong-answer-${idx}` }
-                      className={ answer === quest.correct_answer
-                        ? 'correct_answer'
-                        : 'wrong_answer' }
-=======
                       data-testid="btn-next"
->>>>>>> Stashed changes
                       type="button"
                       onClick={ this.handleClickNext }
                     >
