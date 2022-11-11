@@ -132,12 +132,9 @@ class Game extends React.Component {
                     >
                       Next
                     </button>)}
-                     <Timer />
-                </div>
-              </div>
-            );
-          }) }
-
+              <Timer />
+            </div>
+          </div>
         </div>
       </div>
     );
