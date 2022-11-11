@@ -74,7 +74,7 @@ class Game extends React.Component {
                         : `wrong-answer-${idx}` }
                       className={ answer === quest.correct_answer
                         ? 'correct_answer'
-                        : `wrong_answer-${idx}` }
+                        : 'wrong_answer' }
                       type="button"
                       onClick={ this.handleClickAnswer }
                     >
