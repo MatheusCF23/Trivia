@@ -7,6 +7,7 @@ import Game from './pages/Game';
 import './style/Login.css';
 import Settings from './pages/Settings';
 import Ranking from './pages/Ranking';
+import Feedback from './pages/Feedback';
 
 class App extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class App extends React.Component {
             <Route exact path="/game" component={ Game } />
             <Route exact path="/settings" component={ Settings } />
             <Route exact path="/ranking" component={ Ranking } />
+            <Route exact path="/feedback" component={ Feedback } />
           </Switch>
         </header>
       </div>

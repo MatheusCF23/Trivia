@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getLocalStorage, removeLocalStorage } from '../service/localStorage';
 import { fetchApiQuestions } from '../redux/action';
+import '../style/Game.css';
 
 class Game extends React.Component {
   constructor() {
@@ -12,6 +13,9 @@ class Game extends React.Component {
       isLoading: true,
       questions: [],
       indexQuestion: 0,
+      btnNext: false,
+      answered: false,
+      sortedAnswers: [],
     };
   }
 
@@ -23,7 +27,16 @@ class Game extends React.Component {
       removeLocalStorage();
       history.push('/');
     }
-    this.setState({ isLoading: false, questions: resultApi.results });
+
+    this.setState({
+      isLoading: false,
+      questions: resultApi.results,
+    }, () => {
+      const { questions, indexQuestion } = this.state;
+      const answers = [questions[indexQuestion].correct_answer,
+        ...questions[indexQuestion].incorrect_answers];
+      this.setState({ sortedAnswers: this.handleSortAnswers(answers) });
+    });
   }
 
   handleSettings = () => {
@@ -32,7 +45,26 @@ class Game extends React.Component {
   };
 
   handleClickAnswer = () => {
-    this.setState((prev) => ({ indexQuestion: prev.indexQuestion + 1 }));
+    this.setState({ btnNext: true, answered: true });
+  };
+
+  handleClickNext = () => {
+    const { questions, indexQuestion } = this.state;
+    const { history } = this.props;
+    const four = 4;
+    if (indexQuestion === four) {
+      history.push('/feedback');
+    }
+    this.setState(
+      (prev) => ({ indexQuestion: prev.indexQuestion + 1,
+        btnNext: false,
+        answered: false }),
+      () => {
+        const answer = [questions[indexQuestion + 1].correct_answer,
+          ...questions[indexQuestion + 1].incorrect_answers];
+        this.setState({ sortedAnswers: this.handleSortAnswers(answer) });
+      },
+    );
   };
 
   handleSortAnswers = (array) => {
@@ -40,12 +72,22 @@ class Game extends React.Component {
     return array.sort(() => Math.random() - magicNumber);
   };
 
+  handleClasses = (answer, correct) => {
+    const { answered } = this.state;
+    let classBtn = '';
+    if (answered && answer === correct) {
+      classBtn = 'correct_answer';
+    } else if (answered && answer !== correct) {
+      classBtn = 'wrong_answer';
+    } else {
+      classBtn = 'answer';
+    }
+    return classBtn;
+  };
+
   render() {
-    const { isLoading, questions, indexQuestion } = this.state;
+    const { isLoading, questions, indexQuestion, btnNext, sortedAnswers } = this.state;
     if (isLoading) return (<p>Loading...</p>);
-
-    const questCurrent = [questions[indexQuestion]];
-
     return (
       <div>
         <Header />
@@ -57,17 +99,30 @@ class Game extends React.Component {
           Settings
         </button>
         <div>
-          { questCurrent.map((quest, index) => {
-            const answers = [quest.correct_answer, ...quest.incorrect_answers];
-            const newAnswers = this.handleSortAnswers(answers);
-
-            return (
-              <div key={ index }>
-                <p data-testid="question-category">{quest.category}</p>
-                <p data-testid="question-text">{quest.question}</p>
-                <div data-testid="answer-options">
-                  { newAnswers.map((answer, idx) => (
+          <div>
+            <p data-testid="question-category">{questions[indexQuestion].category}</p>
+            <p data-testid="question-text">{questions[indexQuestion].question}</p>
+            <div data-testid="answer-options">
+              { sortedAnswers.map((answer, idx) => (
+                <button
+                  key={ idx }
+                  data-testid={ answer === questions[indexQuestion].correct_answer
+                    ? 'correct-answer'
+                    : `wrong-answer-${idx}` }
+                  className={ this.handleClasses(
+                    answer,
+                    questions[indexQuestion].correct_answer,
+                  ) }
+                  type="button"
+                  onClick={ this.handleClickAnswer }
+                >
+                  {answer}
+                </button>
+              )) }
+              { btnNext
+                  && (
                     <button
+<<<<<<< Updated upstream
                       key={ idx }
                       data-testid={ answer === quest.correct_answer
                         ? 'correct-answer'
@@ -75,16 +130,16 @@ class Game extends React.Component {
                       className={ answer === quest.correct_answer
                         ? 'correct_answer'
                         : 'wrong_answer' }
+=======
+                      data-testid="btn-next"
+>>>>>>> Stashed changes
                       type="button"
-                      onClick={ this.handleClickAnswer }
+                      onClick={ this.handleClickNext }
                     >
-                      {answer}
-                    </button>
-                  )) }
-                </div>
-              </div>
-            );
-          }) }
+                      Next
+                    </button>)}
+            </div>
+          </div>
         </div>
       </div>
     );
