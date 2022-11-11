@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { getLocalStorage, removeLocalStorage } from '../service/localStorage';
 import { fetchApiQuestions } from '../redux/action';
 import '../style/Game.css';
+import Timer from '../components/Timer';
 
 class Game extends React.Component {
   constructor() {
@@ -87,6 +88,8 @@ class Game extends React.Component {
 
   render() {
     const { isLoading, questions, indexQuestion, btnNext, sortedAnswers } = this.state;
+    const { disabledButtonAnswers } = this.props;
+
     if (isLoading) return (<p>Loading...</p>);
     return (
       <div>
@@ -115,6 +118,7 @@ class Game extends React.Component {
                   ) }
                   type="button"
                   onClick={ this.handleClickAnswer }
+                  disabled={ disabledButtonAnswers }
                 >
                   {answer}
                 </button>
@@ -128,19 +132,28 @@ class Game extends React.Component {
                     >
                       Next
                     </button>)}
-            </div>
-          </div>
+                     <Timer />
+                </div>
+              </div>
+            );
+          }) }
+
         </div>
       </div>
     );
   }
 }
 
+const mapStateToProps = (stateGlobal) => ({
+  disabledButtonAnswers: stateGlobal.game.disabledButtonAnswers,
+});
+
 Game.propTypes = {
+  disabledButtonAnswers: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default connect()(Game);
+export default connect(mapStateToProps)(Game);
