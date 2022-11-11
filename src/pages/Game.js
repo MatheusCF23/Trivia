@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getLocalStorage, removeLocalStorage } from '../service/localStorage';
-import { fetchApiQuestions } from '../redux/action';
+import { fetchApiQuestions, countScore } from '../redux/action';
 import '../style/Game.css';
 import Timer from '../components/Timer';
 
@@ -45,7 +45,32 @@ class Game extends React.Component {
     history.push('/settings');
   };
 
-  handleClickAnswer = () => {
+  handleCountDificult = (dificult) => {
+    const one = 1;
+    const two = 2;
+    const three = 3;
+    switch (dificult) {
+    case 'easy':
+      return one;
+    case 'medium':
+      return two;
+    case 'hard':
+      return three;
+    default:
+      return 0;
+    }
+  };
+
+  handleClickAnswer = ({ target }) => {
+    const { score, dispatch, timer } = this.props;
+    const ten = 10;
+    const { id } = target;
+    const { questions, indexQuestion } = this.state;
+    if (id === questions[indexQuestion].correct_answer) {
+      const updatescore = score + ten
+       + (timer * this.handleCountDificult(questions[indexQuestion].difficulty));
+      dispatch(countScore(updatescore));
+    }
     this.setState({ btnNext: true, answered: true });
   };
 
@@ -108,6 +133,7 @@ class Game extends React.Component {
             <div data-testid="answer-options">
               { sortedAnswers.map((answer, idx) => (
                 <button
+                  id={ answer }
                   key={ idx }
                   data-testid={ answer === questions[indexQuestion].correct_answer
                     ? 'correct-answer'
@@ -143,10 +169,14 @@ class Game extends React.Component {
 
 const mapStateToProps = (stateGlobal) => ({
   disabledButtonAnswers: stateGlobal.game.disabledButtonAnswers,
+  score: stateGlobal.player.score,
+  timer: stateGlobal.game.timer,
 });
 
 Game.propTypes = {
   disabledButtonAnswers: PropTypes.bool.isRequired,
+  score: PropTypes.number.isRequired,
+  timer: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

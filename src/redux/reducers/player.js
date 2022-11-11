@@ -1,4 +1,4 @@
-import { ADD_PLAYER, ADD_ASSERTIONS } from '../action';
+import { ADD_PLAYER, ADD_ASSERTIONS, COUNT_SCORE } from '../action';
 
 const INITTIAL_STATE = {
   name: '',
@@ -20,6 +20,11 @@ const player = (state = INITTIAL_STATE, action) => {
     return {
       ...state,
       assertions: state.assertions + action.payload,
+    };
+  case COUNT_SCORE:
+    return {
+      ...state,
+      score: state.score + action.score,
     };
 
   default:

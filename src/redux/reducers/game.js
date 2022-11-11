@@ -2,6 +2,7 @@ import { TIMER_DESABLED_BUTTON } from '../action';
 
 const INITTIAL_STATE = {
   disabledButtonAnswers: false,
+  timer: 30,
 };
 
 const game = (state = INITTIAL_STATE, action) => {
@@ -10,6 +11,7 @@ const game = (state = INITTIAL_STATE, action) => {
     return {
       ...state,
       disabledButtonAnswers: true,
+      timer: action.timer,
     };
   default:
     return state;

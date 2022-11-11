@@ -35,7 +35,7 @@ class Timer extends React.Component {
     const { dispatch } = this.props;
     if (count === 0) {
       clearInterval(timer);
-      dispatch(timerDesablesButton());
+      dispatch(timerDesablesButton(count));
     }
   };
 
