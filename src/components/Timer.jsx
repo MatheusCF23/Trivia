@@ -8,6 +8,7 @@ class Timer extends React.Component {
     };
   }
 
+  // Esperando 5 segundos para INICIAR o timer na tela.
   componentDidMount() {
     const fivSeconds = 5000;
     setTimeout(() => {
@@ -15,6 +16,7 @@ class Timer extends React.Component {
     }, fivSeconds);
   }
 
+  // Função para fazer o decremento no estado local.
   timerGame = () => {
     const oneSecond = 1000;
     const countTimer = setInterval(() => {
@@ -24,6 +26,7 @@ class Timer extends React.Component {
     }, oneSecond);
   };
 
+  // Verificando se o contador chegou a zero.
   verifyCount = (timer) => {
     const { count } = this.state;
     if (count === 0) {
