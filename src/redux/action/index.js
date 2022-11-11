@@ -3,22 +3,20 @@ import { requestQuestionApi } from '../../service/Api';
 export const ADD_PLAYER = 'ADD_PLAYER';
 
 export const ADD_ASSERTIONS = 'ADD_ASSERTIONS';
-=======
+
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 export const REQUEST_QUESTIONS_ERROR = 'REQUEST_QUESTIONS_ERROR';
-
 
 export const addPlayer = (player) => ({
   type: ADD_PLAYER,
   player,
 });
 
-
 export const addAssertions = (payload) => ({
   type: ADD_ASSERTIONS,
   payload,
 });
-=======
+
 export const requestQuestions = () => ({
   type: REQUEST_QUESTIONS,
 });
@@ -40,4 +38,3 @@ export function fetchApiQuestions(token) {
     }
   };
 }
-
