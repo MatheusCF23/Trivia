@@ -25,7 +25,7 @@ class Game extends React.Component {
     const tokenUser = getLocalStorage('token');
     const resultApi = await dispatch(fetchApiQuestions(tokenUser));
     if (resultApi.results.length === 0) {
-      removeLocalStorage();
+      removeLocalStorage('token');
       history.push('/');
     }
 
