@@ -15,15 +15,15 @@ class Feedback extends React.Component {
   };
 
   render() {
-    const { assertions } = this.props;
+    const { assertions, score } = this.props;
     const acertos = 3;
     return (
       <div>
         <Header />
         <h1>Feedback</h1>
         {
-          assertions >= acertos ? <h1 data-testid="feedback-text">Well Done!</h1>
-            : <h1 data-testid="feedback-text">Could be better... </h1>
+          assertions < acertos ? <h1 data-testid="feedback-text">Could be better...</h1>
+            : <h1 data-testid="feedback-text">Well Done!</h1>
         }
         <div>
           <button
@@ -41,6 +41,10 @@ class Feedback extends React.Component {
             Ranking
           </button>
         </div>
+        <h1>score</h1>
+        <p data-testid="feedback-total-score">{ score }</p>
+        <p>Total de acertos</p>
+        <p data-testid="feedback-total-question">{ assertions }</p>
       </div>
     );
   }
@@ -48,11 +52,13 @@ class Feedback extends React.Component {
 
 const mapStateToProps = (stateGlobal) => ({
   assertions: stateGlobal.player.assertions,
+  score: stateGlobal.player.score,
 });
 
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
   history: PropTypes.func.isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(Feedback);
