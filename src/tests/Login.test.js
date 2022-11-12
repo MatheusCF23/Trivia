@@ -1,10 +1,10 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 
-describe('testing clicks', () => {
+describe('testing pg Login ', () => {
   test('the page should have two inputs e two buttons', () => {
     renderWithRouterAndRedux(<App />);
     const inputName = screen.getByTestId('input-player-name');
@@ -40,8 +40,7 @@ describe('testing clicks', () => {
     expect(buttonPlay).toBeEnabled();
 
     userEvent.click(buttonPlay);
-    // await waitFor(() => expect(screen.getByText("Settings")).toBeInTheDocument(), {timeout: 2000,});
-    // await screen.findByText('Settings')
+    await new Promise((resolverOuter) => { setTimeout(resolverOuter, 1500); });
     await screen.findByTestId('header-score');
     expect(history.location.pathname).toBe('/game');
   });
