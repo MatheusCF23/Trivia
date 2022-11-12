@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getLocalStorage, removeLocalStorage } from '../service/localStorage';
-import { fetchApiQuestions, countScore } from '../redux/action';
+import { fetchApiQuestions, countScore, addAssertions } from '../redux/action';
 import '../style/Game.css';
 import Timer from '../components/Timer';
 
@@ -70,6 +70,7 @@ class Game extends React.Component {
       const updatescore = score + ten
        + (timer * this.handleCountDificult(questions[indexQuestion].difficulty));
       dispatch(countScore(updatescore));
+      dispatch(addAssertions());
     }
     this.setState({ btnNext: true, answered: true });
   };

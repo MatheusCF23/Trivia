@@ -22,8 +22,8 @@ class Feedback extends React.Component {
         <Header />
         <h1>Feedback</h1>
         {
-          assertions < acertos ? <h1 data-testid="feedback-text">Could be better...</h1>
-            : <h1 data-testid="feedback-text">Well Done!</h1>
+          assertions >= acertos ? <h1 data-testid="feedback-text">Well Done!</h1>
+            : <h1 data-testid="feedback-text">Could be better... </h1>
         }
         <div>
           <button
