@@ -5,6 +5,7 @@ export const ADD_ASSERTIONS = 'ADD_ASSERTIONS';
 export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 export const REQUEST_QUESTIONS_ERROR = 'REQUEST_QUESTIONS_ERROR';
 export const TIMER_DESABLED_BUTTON = 'TIMER_DESABLED_BUTTON';
+export const COUNT_SCORE = 'COUNT_SCORE';
 
 export const addPlayer = (player) => ({
   type: ADD_PLAYER,
@@ -25,8 +26,14 @@ export const requestQuestionsError = (error) => ({
   error,
 });
 
-export const timerDesablesButton = () => ({
+export const timerDesablesButton = (timer) => ({
   type: TIMER_DESABLED_BUTTON,
+  timer,
+});
+
+export const countScore = (score) => ({
+  type: COUNT_SCORE,
+  score,
 });
 
 // <---------------- Thunk fecth API ---------------->
