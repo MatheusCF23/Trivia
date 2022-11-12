@@ -12,9 +12,8 @@ export const addPlayer = (player) => ({
   player,
 });
 
-export const addAssertions = (payload) => ({
+export const addAssertions = () => ({
   type: ADD_ASSERTIONS,
-  payload,
 });
 
 export const requestQuestions = () => ({

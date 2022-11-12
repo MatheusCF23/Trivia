@@ -19,7 +19,7 @@ const player = (state = INITTIAL_STATE, action) => {
   case ADD_ASSERTIONS:
     return {
       ...state,
-      assertions: state.assertions + action.payload,
+      assertions: state.assertions + 1,
     };
   case COUNT_SCORE:
     return {
