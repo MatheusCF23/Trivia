@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import { getLocalStorage, removeLocalStorage, saveRankingLocalStorage } from '../service/localStorage';
+import { getLocalStorage, removeLocalStorage } from '../service/localStorage';
 import { fetchApiQuestions, countScore, addAssertions } from '../redux/action';
 import '../style/Game.css';
 import Timer from '../components/Timer';
@@ -38,7 +38,6 @@ class Game extends React.Component {
         ...questions[indexQuestion].incorrect_answers];
       this.setState({ sortedAnswers: this.handleSortAnswers(answers) });
     });
-    saveRankingLocalStorage([]);
   }
 
   handleSettings = () => {

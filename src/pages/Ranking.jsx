@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
-import { addPlayerRanking, getLocalStorage } from '../service/localStorage';
+import { getLocalStorage, saveRankingLocalStorage } from '../service/localStorage';
 
 class Ranking extends Component {
   constructor() {
@@ -14,10 +14,9 @@ class Ranking extends Component {
 
   componentDidMount() {
     this.saveDataPlayerRanking();
-    this.getDataPlayerRanking();
   }
 
-  fetchImgPlayer = () => {
+  fetchImgPlayerGravatar = () => {
     const { email } = this.props;
     const hash = md5(email).toString();
     const imgPlayerGravatar = `https://www.gravatar.com/avatar/${hash}`;
@@ -26,39 +25,39 @@ class Ranking extends Component {
 
   saveDataPlayerRanking = () => {
     const { name, score } = this.props;
-    const imgPlayer = this.fetchImgPlayer();
+    const imgPlayer = this.fetchImgPlayerGravatar();
     const playerData = {
       imgPlayer,
       name,
       score,
     };
-    addPlayerRanking(playerData);
-  };
 
-  // saveDataPlayerRanking = () => {
-  //   const { name, score } = this.props;
-  //   const { rankingPlayers } = this.state;
-  //   const imgPlayer = this.fetchImgPlayer();
-  //   const playerData = {
-  //     imgPlayer,
-  //     name,
-  //     score,
-  //   };
-  //   this.setState((prev) => ({
-  //     rankingPlayers: [...prev.rankingPlayers, playerData],
-  //   }));
-  //   addPlayerRanking(rankingPlayers);
-  // };
-
-  getDataPlayerRanking = () => {
-    const ranking = getLocalStorage('ranking');
-    console.log(ranking);
-    this.setState({ rankingPlayers: ranking });
+    if (!JSON.parse(localStorage.getItem('ranking'))) {
+      this.setState((prev) => ({
+        rankingPlayers: [...prev.rankingPlayers, playerData],
+      }), () => {
+        const { rankingPlayers } = this.state;
+        saveRankingLocalStorage(rankingPlayers);
+      });
+    } else {
+      const ranking = getLocalStorage('ranking');
+      this.setState({
+        rankingPlayers: [...ranking, playerData],
+      }, () => {
+        const { rankingPlayers } = this.state;
+        saveRankingLocalStorage(rankingPlayers);
+      });
+    }
   };
 
   handleClick = () => {
     const { history } = this.props;
     history.push('/');
+  };
+
+  orderScorePlayers = (array) => {
+    const arrayOrderScore = array.sort((a, b) => b.score - a.score);
+    return arrayOrderScore;
   };
 
   render() {
@@ -74,7 +73,7 @@ class Ranking extends Component {
           Home
         </button>
         <div>
-          { rankingPlayers.map((player, index) => (
+          { this.orderScorePlayers(rankingPlayers).map((player, index) => (
             <div key={ index }>
               <img src={ player.imgPlayer } alt="icon-player" />
               <p data-testid={ `player-name-${index}` }>{player.name}</p>
