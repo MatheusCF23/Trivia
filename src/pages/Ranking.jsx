@@ -35,6 +35,21 @@ class Ranking extends Component {
     addPlayerRanking(playerData);
   };
 
+  // saveDataPlayerRanking = () => {
+  //   const { name, score } = this.props;
+  //   const { rankingPlayers } = this.state;
+  //   const imgPlayer = this.fetchImgPlayer();
+  //   const playerData = {
+  //     imgPlayer,
+  //     name,
+  //     score,
+  //   };
+  //   this.setState((prev) => ({
+  //     rankingPlayers: [...prev.rankingPlayers, playerData],
+  //   }));
+  //   addPlayerRanking(rankingPlayers);
+  // };
+
   getDataPlayerRanking = () => {
     const ranking = getLocalStorage('ranking');
     console.log(ranking);
@@ -51,6 +66,13 @@ class Ranking extends Component {
     return (
       <div>
         <h1 data-testid="ranking-title">Ranking</h1>
+        <button
+          type="button"
+          data-testid="btn-go-home"
+          onClick={ this.handleClick }
+        >
+          Home
+        </button>
         <div>
           { rankingPlayers.map((player, index) => (
             <div key={ index }>
@@ -60,13 +82,6 @@ class Ranking extends Component {
             </div>
           ))}
         </div>
-        <button
-          type="button"
-          data-testid="btn-go-home"
-          onClick={ this.handleClick }
-        >
-          Home
-        </button>
       </div>
     );
   }

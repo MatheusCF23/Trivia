@@ -14,6 +14,7 @@ export const saveRankingLocalStorage = (param) => {
 export const addPlayerRanking = (param) => {
   if (param) {
     const rankinAnterior = getLocalStorage('ranking');
+    console.log('ranking anterior', rankinAnterior);
     saveRankingLocalStorage([...rankinAnterior, param]);
   }
 };
