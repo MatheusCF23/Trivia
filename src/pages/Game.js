@@ -54,10 +54,8 @@ class Game extends React.Component {
       return one;
     case 'medium':
       return two;
-    case 'hard':
-      return three;
     default:
-      return 0;
+      return three;
     }
   };
 

@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import App from "../App";
 import Game from "../pages/Game";
+import { act } from 'react-dom/test-utils';
 import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 import { invalidTokenQuestionsResponse, questionsResponse } from "./mocks/questions";
 import { invalidTokenResponse, tokenResponse } from "./mocks/token";
@@ -129,7 +130,8 @@ describe("pg Game with invalid token", () => {
      });
      // <---------------- Mock do token valido e questions ---------------->
 
-    const { history } = renderWithRouterAndRedux(<App/>);
+    const { history } = renderWithRouterAndRedux( <App /> );
+
     const inputName = screen.getByTestId("input-player-name");
     const inputEmail = screen.getByTestId("input-gravatar-email");
     const buttonPlay = screen.getByRole("button", { name: "Play" });
@@ -148,4 +150,52 @@ describe("pg Game with invalid token", () => {
     userEvent.click(buttonSettings);
     expect(history.location.pathname).toBe("/settings");
   });
+
+
+test("5)test score", async () => {
+  jest.resetAllMocks();
+   // <---------------- Mock do token valido e questions ---------------->
+   jest.spyOn(global, "fetch");
+   global.fetch.mockResolvedValueOnce({
+     json: jest.fn().mockResolvedValue(tokenResponse),
+   });
+
+   jest.spyOn(global, "fetch");
+   global.fetch.mockResolvedValueOnce({
+     json: jest.fn().mockResolvedValue(questionsResponse),
+   });
+   // <---------------- Mock do token valido e questions ---------------->
+
+  const { history } = renderWithRouterAndRedux( <App /> );
+
+  const inputName = screen.getByTestId("input-player-name");
+  const inputEmail = screen.getByTestId("input-gravatar-email");
+  const buttonPlay = screen.getByRole("button", { name: "Play" });
+
+  expect(buttonPlay).toBeDisabled();
+  userEvent.type(inputName, "Gabriela");
+  userEvent.type(inputEmail, "trybe@test.com");
+  expect(buttonPlay).toBeEnabled();
+
+  userEvent.click(buttonPlay);
+  await new Promise((timer) => {
+    setTimeout(timer, 3000);
+  });
+
+  const score = screen.getByTestId('header-score');
+  expect(score.innerHTML).toBe('0');
+    const corretAnswer = await screen.findByTestId('correct-answer');
+    userEvent.click(corretAnswer);
+    const btnNext = screen.getByTestId('btn-next');
+    userEvent.click(btnNext);
+    await new Promise((timer) => {
+      setTimeout(timer, 2000);
+    });
+   expect(score.innerHTML).toBe('40');
+   const wrongAnswer = await screen.findByTestId('wrong-answer-2');
+    userEvent.click(wrongAnswer);
+
+   expect(score.innerHTML).toBe('40');
+});
+
 });
