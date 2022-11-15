@@ -8,7 +8,7 @@ body {
 
 .login {
   align-items: center;
-  background-image: url("../img/fundo.teste2.fw.png");
+  background-image: url('../img/fundo.teste2.fw.png');
   background-size: cover;
   display: flex;
   height: 100vh;
