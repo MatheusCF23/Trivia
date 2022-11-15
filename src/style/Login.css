@@ -8,25 +8,16 @@ body {
 
 .login {
   align-items: center;
-  background: linear-gradient(180deg, #3c1b7a 0%, #0000 100%);
+  background-image: url("../img/fundo.teste2.fw.png");
+  background-size: cover;
   display: flex;
   height: 100vh;
   justify-content: center;
   width: 100vw;
-
-  /* position: absolute; */
 }
 
 .login div {
   align-items: center;
-
-  /* background-image: url("../img/fundo.png");
-  color: linear-gradient(180deg, #3c1b7a71 0%, #000000 100%) ;
-  background-repeat: no-repeat;
-  background-size: cover;
-  mix-blend-mode: multiply;
-  width: 1980px;
-  height: 1000px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
