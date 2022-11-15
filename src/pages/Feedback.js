@@ -57,7 +57,9 @@ const mapStateToProps = (stateGlobal) => ({
 
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
-  history: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
   score: PropTypes.number.isRequired,
 };
 
