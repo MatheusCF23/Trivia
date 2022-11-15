@@ -38,7 +38,7 @@ class Login extends React.Component {
   handleClick = async () => {
     const { history, dispatch } = this.props;
     const resultApi = await reqApi();
-    localStorage.setItem('token', resultApi.token);
+    localStorage.setItem('token', JSON.stringify(resultApi.token));
     dispatch(addPlayer(this.state));
     history.push('/game');
   };
