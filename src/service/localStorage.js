@@ -3,7 +3,7 @@ if (!JSON.parse(localStorage.getItem('ranking'))) {
 }
 
 export const getLocalStorage = (param) => {
-  const tokenLocalStorage = JSON.parse(localStorage.getItem(param));
+  const tokenLocalStorage = localStorage.getItem(param);
   return tokenLocalStorage;
 };
 

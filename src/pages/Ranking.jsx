@@ -40,7 +40,7 @@ class Ranking extends Component {
         saveRankingLocalStorage(rankingPlayers);
       });
     } else {
-      const ranking = getLocalStorage('ranking');
+      const ranking = JSON.parse(getLocalStorage('ranking'));
       this.setState({
         rankingPlayers: [...ranking, playerData],
       }, () => {
