@@ -30,6 +30,7 @@ describe('testing pg Login ', () => {
 });
 
 describe('testing clicks', () => {
+  jest.setTimeout(3000)
   test('validate inputs and disabled button play', async() => {
     jest.resetAllMocks();
    // <---------------- Mock do token valido e questions ---------------->
