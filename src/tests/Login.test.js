@@ -40,7 +40,7 @@ describe('testing clicks', () => {
     expect(buttonPlay).toBeEnabled();
 
     userEvent.click(buttonPlay);
-    await new Promise((resolverOuter) => { setTimeout(resolverOuter, 1500); });
+    await new Promise((resolverOuter) => { setTimeout(resolverOuter, 150); });
     await screen.findByTestId('header-score');
     expect(history.location.pathname).toBe('/game');
   });
