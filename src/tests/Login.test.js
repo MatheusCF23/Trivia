@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
@@ -55,6 +55,9 @@ describe('testing clicks', () => {
     expect(buttonPlay).toBeEnabled();
 
     userEvent.click(buttonPlay);
+    await waitFor(() => expect(history.location.pathname).toBe('/game'), { timeout : 2000})
+// ...
+    // await new Promise((resolverOuter) => { setTimeout(resolverOuter, 150); });
     // await screen.findByTestId('header-score');
     // expect(history.location.pathname).toBe('/game');
   });
