@@ -9,7 +9,7 @@ import { invalidTokenQuestionsResponse, questionsResponse } from "./mocks/questi
 import { invalidTokenResponse, tokenResponse } from "./mocks/token";
 
 describe("testing pg Game valid token", () => {
-  jest.setTimeout(45000);
+  jest.setTimeout(38000);
   test("1) validate btns questions and btn Next; storage localSotrage validate token", async () => {
     // <---------------- Mock do token valido e questions ---------------->
     jest.spyOn(global, "fetch");
@@ -18,7 +18,7 @@ describe("testing pg Game valid token", () => {
     });
 
     jest.spyOn(global, "fetch");
-    global.fetch.mockResolvedValueOnce({
+    global.fetch.mockResolvedValueOnce({ 
       json: jest.fn().mockResolvedValue(questionsResponse),
     });
     // <---------------- Mock do token valido e questions ---------------->
@@ -78,7 +78,7 @@ describe("testing pg Game valid token", () => {
     expect(corretAnswer).toBeEnabled();
 
     await new Promise((timer) => {
-      setTimeout(timer, 39000);
+      setTimeout(timer, 36000);
     });
     expect(corretAnswer).toBeDisabled();
   });

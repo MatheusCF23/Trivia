@@ -24,7 +24,7 @@ const player = (state = INITTIAL_STATE, action) => {
   case COUNT_SCORE:
     return {
       ...state,
-      score: state.score + action.score,
+      score: action.score,
     };
 
   default:
